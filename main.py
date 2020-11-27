@@ -98,7 +98,6 @@ def createOutputs(key, yml_dict):
     print(key[:-1])
     template = jinja_templates.get_template(f"output/output.j2")
     
-    
     if (key[:-1] != 'schema_site'):
         if (key[:-1] != 'schema_template_bd_subnet'):
             for item in yml_dict:
@@ -109,20 +108,6 @@ def createOutputs(key, yml_dict):
                 )
 
                 writeFile(f"{payload}\n", "output")
-
-
-    #not with schema_site
-    
-
-
-    #mso_schema_template_anp_epg_contract: contract_name
-    #mso_schema_template_contract_filter.ctrfabric1fincloning2.name: contract_name
-
-   
-   
-    
- 
-
 
 def postProcessFile(filename):
     logToFile(f"  => Postprocessing {filename}.tf")
