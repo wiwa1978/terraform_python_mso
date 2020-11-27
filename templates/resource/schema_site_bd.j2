@@ -1,0 +1,15 @@
+{% for dict_item in variables %}
+
+resource "mso_schema_site_bd" "{{ dict_item['schema_site_bd'] }}" {
+  schema_id       = mso_schema.{{ dict_item['schema'] }}.id
+  bd_name         = mso_schema_template_bd.{{ dict_item['name'] }}.name
+{% if 'mso_schema_template' in dict_item['type'] %}
+  template_name   = mso_schema_template.{{ dict_item['template'] }}.name
+{% else %}
+  template_name   = mso_schema.{{ dict_item['template'] }}.template_name
+{% endif %}
+  site_id         = data.mso_site.{{ dict_item['site'] }}.id
+  host_route      = {{ dict_item['host_route'] }}
+}
+
+{% endfor %}

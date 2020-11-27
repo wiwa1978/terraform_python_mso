@@ -1,0 +1,11 @@
+{% for dict_item in variables %}
+
+resource "mso_schema_template_anp" "{{ dict_item['schema_template_anp'] }}" {
+  schema_id       = mso_schema.{{ dict_item['schema'] }}.id 
+  template        = mso_schema_template.{{ dict_item['template'] }}.name
+  name            = "{{ dict_item['name'] }}"
+  display_name    = "{{ dict_item['name'] }}"
+}
+
+{% endfor %}
+

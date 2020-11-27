@@ -1,0 +1,9 @@
+{% for dict_item in variables %}
+{% for key, value in dict_item.items() %}
+data "mso_site" "{{key}}" {
+  name  = "{{value}}"
+}
+
+{% endfor %}
+{% endfor %}
+

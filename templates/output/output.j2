@@ -1,0 +1,16 @@
+output {{key}}_{{name}} {
+{% if 'schema_template_anp_epg_contract' in key %}
+  value = mso_{{key}}.{{name}}.contract_name
+{% elif 'schema_template_contract' in key %}
+  value = mso_{{key}}.{{name}}.contract_name
+{% elif 'schema_template_contract_filter' in key %}
+  value = mso_{{key}}.{{name}}.contract_name
+{% elif 'schema_site_bd' in key %}
+  value = mso_{{key}}.{{name}}.bd_name
+{% elif 'schema_template_filter' in key %}
+  value = mso_{{key}}_entry.{{name}}.name
+{% else %}
+    value = mso_{{key}}.{{name}}.name
+{% endif %}
+}
+

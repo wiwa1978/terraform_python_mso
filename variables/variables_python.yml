@@ -1,0 +1,162 @@
+---
+providers:
+  username: admin
+  password: Cisco123456!
+  url: https://10.48.109.10
+sites: 
+  - site1: SaS_APIC
+  - site2: Test_SITE1
+tenants: 
+  - tenant: tenant1
+    name: Tenant_Demo1
+    description: Tenant_DemoWim description
+    sites: 
+      - site1
+      - site2
+  - tenant: tenant2
+    name: Tenant_Demo2
+    description: Tenant_DemoWim description
+    sites: 
+      - site1
+schemas: 
+  - schema: schema1
+    name: schema1
+    template_name: template1
+    tenant: tenant1
+  - schema: schema2
+    name: schema2
+    template_name: template2
+    tenant: tenant2
+schema_sites:
+  - schema_site: schema_site1
+    schema: schema1
+    site: site1
+    template: template1
+    type: mso_schema_template #(can be mso_schema or mso_schema_template)
+schema_templates:
+  - schema_template: schema_template1
+    schema: schema_template1
+    name: schema_template1
+    tenant: tenant1
+schema_template_anps: 
+  - schema_template_anp: ap1
+    schema: schema1
+    name: ap1
+    template: template1
+schema_site_bds:
+  - schema_site_bd: site_bd1
+    schema: schema1
+    template: template1
+    name: site_bd1
+    site: site1
+    host_route: true
+schema_template_vrfs: 
+  - schema_template_vrf: vrf1
+    schema: schema1
+    name: vrf1
+    template: template1
+    layer3_multicast: true
+    vzany: true
+    type: mso_schema_template
+  - schema_template_vrf: vrf2
+    schema: schema1
+    name: vrf2
+    template: template1
+    layer3_multicast: true
+    vzany: false
+    type: mso_schema_template
+schema_template_bds:
+  - schema_template_bd: schema_template_bd1
+    schema: schema1
+    template: template1
+    name: schema_template_bd1
+    vrf: vrf1
+    layer2_unknown_unicast: "proxy"
+    layer2_stretch: true
+    intersite_bum_traffic: true
+    optimize_wan_bandwidth: true
+    type: mso_schema_template
+schema_template_bd_subnets:
+  - schema_template_bd_subnet: schema_template_bd_subnet1
+    schema: schema1
+    template: template1
+    bd: bd1
+    ip: 10.10.20.10/27
+    scope: public
+    description: Description schema_template_bd_subnet1
+    shared: false
+    no_default_gateway: false
+    querier: false
+    type: mso_schema_template
+schema_template_anp_epgs: 
+  - schema_template_anp_epg: epg1
+    schema: schema1
+    name: epg1
+    ap: ap1
+    template: template1
+    bd: bd1
+    vrf: vrf1
+    useg_epg: false
+    intra_epg: "unenforced"
+    intersite_multicast_source: false
+    preferred_group: false
+schema_template_filters:
+  - schema_template_filter: "allow_http"
+    name: "allow_http"
+    schema: schema1
+    template: template1
+    entry_name: "any"
+    ether_type: "ipv4"
+    ip_protocol: "tcp"
+    destination_from: "any"
+    destination_to: "80"
+    source_from: "any"
+    source_to: "any"
+    arp_flag: "unspecified"
+    type: mso_schema_template
+  - schema_template_filter: "allow_ssh"
+    name: "allow_ssh"
+    schema: schema1
+    template: template1
+    entry_name: any
+    ether_type: ipv4
+    ip_protocol: tcp
+    destination_from: any
+    destination_to: 22
+    source_from: any
+    source_to: any
+    arp_flag: unspecified
+    type: mso_schema_template
+schema_template_contracts:
+  - schema_template_contract: contract1
+    name: contract1
+    filter: allow_http
+    schema: schema1
+    template: template1
+    directives: ["none", "log"]
+    type: mso_schema_template
+  - schema_template_contract: contract2
+    name: contract2
+    filter: allow_ssh
+    schema: schema1
+    template: template1
+    directives: ["none", "log"]
+    type: mso_schema_template
+schema_template_anp_epg_contracts:
+  - schema_template_anp_epg_contract: epg_contract1
+    schema: schema1
+    template: template1
+    ap: ap1
+    epg: epg1 
+    contract: contract1
+    relationship_type: provider
+    type: mso_schema_template
+schema_template_contract_filters:
+  - schema_template_contract_filter: contract_filter1
+    schema: schema1
+    template: template1
+    contract: contract1
+    filter: contract_filter1
+    directives: ["log"]
+    type: mso_schema_template
+

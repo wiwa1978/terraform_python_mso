@@ -1,0 +1,17 @@
+terraform {
+  required_providers {
+    mso = {
+      source  = "ciscodevnet/mso"
+      version = "0.1.2"
+    }
+  }
+}
+
+provider "mso" {
+  username    = "{{ username }}"
+  password    = "{{ password }}"
+  url         = "{{ url }}"
+  insecure    = true
+}
+
+

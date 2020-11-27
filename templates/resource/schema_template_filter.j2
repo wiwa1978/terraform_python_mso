@@ -1,0 +1,22 @@
+{% for dict_item in variables %}
+resource "mso_schema_template_filter_entry" "{{ dict_item['schema_template_filter'] }}" {
+  schema_id          = mso_schema.{{ dict_item['schema'] }}.id
+{% if 'mso_schema_template' in dict_item['type'] %}
+  template_name      = mso_schema_template.{{ dict_item['template'] }}.name
+{% else %}
+  template_name      = mso_schema.{{ dict_item['template'] }}.template_name
+{% endif %}
+  name               = "{{ dict_item['name'] }}"
+  display_name       = "{{ dict_item['name'] }}"
+  entry_name         = "{{ dict_item['entry_name'] }}"
+  entry_display_name = "{{ dict_item['entry_name'] }}"
+  ether_type         = "{{ dict_item['ether_type'] }}"
+  ip_protocol        = "{{ dict_item['ip_protocol'] }}"
+  destination_from   = "{{ dict_item['destination_from'] }}"
+  destination_to     = "{{ dict_item['destination_to'] }}"
+  source_from        = "{{ dict_item['source_from'] }}"
+  source_to          = "{{ dict_item['source_to'] }}"
+  arp_flag           = "{{ dict_item['arp_flag'] }}"
+}
+
+{% endfor %}

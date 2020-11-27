@@ -1,0 +1,21 @@
+{% for dict_item in variables %}
+
+resource "mso_schema_template_bd_subnet" "{{ dict_item['schema_template_bd_subnet'] }}" {
+  schema_id               = mso_schema.{{ dict_item['schema'] }}.id
+{% if 'mso_schema_template' in dict_item['type'] %}
+  template_name           = mso_schema_template.{{ dict_item['template'] }}.name
+{% else %}
+  template_name           = mso_schema.{{ dict_item['template'] }}.template_name
+{% endif %}
+  bd_name                 = mso_schema_template_bd.{{ dict_item['bd'] }}.name
+  ip                      = "{{ dict_item['ip'] }}"
+  scope                   = "{{ dict_item['scope'] }}"
+  description             = "{{ dict_item['description'] }}"
+  shared                  = {{ dict_item['shared'] }}
+  no_default_gateway      = {{ dict_item['no_default_gateway'] }}
+  querier                 = {{ dict_item['querier'] }}
+}
+
+{% endfor %}
+
+

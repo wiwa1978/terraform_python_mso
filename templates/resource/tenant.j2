@@ -1,0 +1,14 @@
+{% for dict_item in variables %}
+
+resource "mso_tenant" "{{ dict_item['tenant'] }}" {
+  name              =  "{{ dict_item['name'] }}"
+  display_name      =  "{{ dict_item['name'] }}"
+  description       =  "{{ dict_item['description'] }}"
+{% for site in dict_item['sites'] %}
+  site_associations {
+    site_id = data.mso_site.{{site}}.id
+  }
+{% endfor %}
+}
+
+{% endfor %}

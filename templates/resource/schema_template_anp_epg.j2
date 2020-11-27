@@ -1,0 +1,18 @@
+{% for dict_item in variables %}
+
+resource "mso_schema_template_anp_epg" "{{ dict_item['schema_template_anp_epg'] }}" {
+  schema_id                  = mso_schema.{{ dict_item['schema'] }}.id 
+  template_name              = mso_schema_template.{{ dict_item['template'] }}.name
+  anp_name                   = mso_schema_template_anp.{{ dict_item['ap'] }}.name
+  name                       = "{{ dict_item['name'] }}"
+  display_name               = "{{ dict_item['name'] }}"
+  bd_name                    = mso_schema_template_bd.{{ dict_item['bd'] }}.name
+  vrf_name                   = mso_schema_template_vrf.{{ dict_item['vrf'] }}.name
+  vrf_template_name          = mso_schema.{{ dict_item['schema'] }}.template_name
+  useg_epg                   = {{ dict_item['useg_epg'] }}
+  intra_epg                  = "{{ dict_item['intra_epg'] }}"
+  intersite_multicast_source = {{ dict_item['intersite_multicast_source'] }}
+  preferred_group            = {{ dict_item['preferred_group'] }}
+}
+
+{% endfor %}

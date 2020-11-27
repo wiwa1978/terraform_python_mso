@@ -1,0 +1,16 @@
+{% for dict_item in variables %}
+
+resource "mso_schema_template_vrf" "{{ dict_item['schema_template_vrf'] }}" {
+  schema_id          = mso_schema.{{ dict_item['schema'] }}.id
+{% if 'mso_schema_template' in dict_item['type'] %}
+  template           = mso_schema_template.{{ dict_item['template'] }}.name
+{% else %}
+  template           = mso_schema.{{ dict_item['template'] }}.template_name
+{% endif %}
+  name               = "{{ dict_item['name'] }}"
+  display_name       = "{{ dict_item['name'] }}"
+  layer3_multicast   = {{ dict_item['layer3_multicast'] }}
+  vzany              = {{ dict_item['vzany'] }}
+}
+
+{% endfor %}

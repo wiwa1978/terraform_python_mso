@@ -1,0 +1,13 @@
+{% for dict_item in variables %}
+
+resource "mso_schema_site" "{{ dict_item['schema_site'] }}" {
+  schema_id       = mso_schema.{{ dict_item['schema'] }}.id 
+  site_id         = data.mso_site.{{ dict_item['site'] }}.id
+{% if 'mso_schema_template' in dict_item['type'] %}
+  template_name   = mso_schema_template.{{ dict_item['template'] }}.name
+{% else %}
+  template_name   = mso_schema.{{ dict_item['schema'] }}.template_name
+{% endif %}
+}
+
+{% endfor %}

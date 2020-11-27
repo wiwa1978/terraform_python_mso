@@ -1,0 +1,21 @@
+{% for dict_item in variables %}
+resource "mso_schema_template_contract" "{{ dict_item['schema_template_contract'] }}" {
+  schema_id           = mso_schema.{{ dict_item['schema'] }}.id
+{% if 'mso_schema_template' in dict_item['type'] %}
+  template_name       = mso_schema_template.{{ dict_item['template'] }}.name
+{% else %}
+  template_name       = mso_schema.{{ dict_item['template'] }}.template_name
+{% endif %}
+  contract_name       = "{{ dict_item['name'] }}"
+  display_name        = "{{ dict_item['name'] }}"
+  filter_type         = "bothWay"
+  scope               = "context"
+  filter_relationships   = {
+    #filter_schema_id     = mso_schema.{{ dict_item['schema'] }}.id
+    #filter_template_name = "{{ dict_item['template'] }}"
+    filter_name          = mso_schema_template_filter_entry.{{ dict_item['filter'] }}.name
+  }
+  directives          = {{ dict_item['directives'] }}
+}
+
+{% endfor %}

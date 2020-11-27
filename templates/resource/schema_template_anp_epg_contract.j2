@@ -1,0 +1,18 @@
+{% for dict_item in variables %}
+
+resource "mso_schema_template_anp_epg_contract" "{{ dict_item['schema_template_anp_epg_contract'] }}" {
+  schema_id               = mso_schema.{{ dict_item['schema'] }}.id
+  template_name           = mso_schema_template.{{ dict_item['template'] }}.name
+  anp_name                = mso_schema_template_anp.{{ dict_item['ap'] }}.name
+  epg_name                = mso_schema_template_anp_epg.{{ dict_item['epg'] }}.name
+{% if 'mso_schema_template' in dict_item['type'] %}
+  contract_name           = mso_schema_template_contract.{{ dict_item['contract'] }}.contract_name
+{% else %}
+  contract_name           = mso_schema_template_contract.{{ dict_item['contract'] }}.contract_name
+  contract_template_name  = mso_schema.{{ dict_item['schema'] }}.template_name
+{% endif %}
+  relationship_type       = "{{ dict_item['relationship_type'] }}"
+}
+
+{% endfor %}
+
