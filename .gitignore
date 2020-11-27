@@ -1,0 +1,5 @@
+# Ignore Terraform files
+.DS_Store/
+.terraform/
+terraform.tfstate*
+terraform.log
