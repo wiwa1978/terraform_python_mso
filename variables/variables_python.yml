@@ -1,11 +1,11 @@
 ---
 providers:
   username: admin
-  password: ---
-  url: https://---
+  password: Cisco123456!
+  url: https://10.48.109.10
 sites: 
   - site1: SaS_APIC
-  - site2: Test_SITE1
+  - site2: Site2
 tenants: 
   - tenant: tenant1
     name: Tenant_Demo1
@@ -31,45 +31,39 @@ schema_sites:
   - schema_site: schema_site1
     schema: schema1
     site: site1
-    template: template1
+    template: schema_template1
     type: mso_schema_template #(can be mso_schema or mso_schema_template)
 schema_templates:
   - schema_template: schema_template1
-    schema: schema_template1
+    schema: schema1
     name: schema_template1
     tenant: tenant1
 schema_template_anps: 
   - schema_template_anp: ap1
     schema: schema1
     name: ap1
-    template: template1
-schema_site_bds:
-  - schema_site_bd: site_bd1
-    schema: schema1
-    template: template1
-    name: site_bd1
-    site: site1
-    host_route: true
+    template: schema_template1
+
 schema_template_vrfs: 
   - schema_template_vrf: vrf1
     schema: schema1
     name: vrf1
-    template: template1
+    template: schema_template1
     layer3_multicast: true
     vzany: true
     type: mso_schema_template
   - schema_template_vrf: vrf2
     schema: schema1
     name: vrf2
-    template: template1
+    template: schema_template1
     layer3_multicast: true
     vzany: false
     type: mso_schema_template
 schema_template_bds:
-  - schema_template_bd: schema_template_bd1
+  - schema_template_bd: bd1
     schema: schema1
-    template: template1
-    name: schema_template_bd1
+    template: schema_template1
+    name: bd1
     vrf: vrf1
     layer2_unknown_unicast: "proxy"
     layer2_stretch: true
@@ -79,7 +73,7 @@ schema_template_bds:
 schema_template_bd_subnets:
   - schema_template_bd_subnet: schema_template_bd_subnet1
     schema: schema1
-    template: template1
+    template: schema_template1
     bd: bd1
     ip: 10.10.20.10/27
     scope: public
@@ -93,7 +87,7 @@ schema_template_anp_epgs:
     schema: schema1
     name: epg1
     ap: ap1
-    template: template1
+    template: schema_template1
     bd: bd1
     vrf: vrf1
     useg_epg: false
@@ -104,7 +98,7 @@ schema_template_filters:
   - schema_template_filter: "allow_http"
     name: "allow_http"
     schema: schema1
-    template: template1
+    template: schema_template1
     entry_name: "any"
     ether_type: "ipv4"
     ip_protocol: "tcp"
@@ -117,7 +111,7 @@ schema_template_filters:
   - schema_template_filter: "allow_ssh"
     name: "allow_ssh"
     schema: schema1
-    template: template1
+    template: schema_template1
     entry_name: any
     ether_type: ipv4
     ip_protocol: tcp
@@ -132,31 +126,24 @@ schema_template_contracts:
     name: contract1
     filter: allow_http
     schema: schema1
-    template: template1
+    template: schema_template1
     directives: ["none", "log"]
     type: mso_schema_template
   - schema_template_contract: contract2
     name: contract2
     filter: allow_ssh
     schema: schema1
-    template: template1
+    template: schema_template1
     directives: ["none", "log"]
     type: mso_schema_template
 schema_template_anp_epg_contracts:
   - schema_template_anp_epg_contract: epg_contract1
     schema: schema1
-    template: template1
+    template: schema_template1
     ap: ap1
     epg: epg1 
     contract: contract1
     relationship_type: provider
     type: mso_schema_template
-schema_template_contract_filters:
-  - schema_template_contract_filter: contract_filter1
-    schema: schema1
-    template: template1
-    contract: contract1
-    filter: contract_filter1
-    directives: ["log"]
-    type: mso_schema_template
+
 

@@ -95,7 +95,7 @@ def renderFiles(yml_dict, split):
 
 def createOutputs(key, yml_dict):
     #print(yml_dict)
-    print(key[:-1])
+ 
     template = jinja_templates.get_template(f"output/output.j2")
     
     if (key[:-1] != 'schema_site'):
@@ -134,8 +134,6 @@ if __name__ == "__main__":
     parser.set_defaults(split=True)
     #parser.add_argument("--split", type=bool, help="<bool> required: for generating seperate files type 'true', else 'false'")
     args = parser.parse_args()
-    print(args.split)
-    print(args.variable_file)
 
     yml_dict = parseYML(args.variable_file)
     cleanFiles()
