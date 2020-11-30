@@ -8,7 +8,9 @@ resource "mso_schema_template_anp_epg" "{{ dict_item['schema_template_anp_epg'] 
   display_name               = "{{ dict_item['name'] }}"
   bd_name                    = mso_schema_template_bd.{{ dict_item['bd'] }}.name
   vrf_name                   = mso_schema_template_vrf.{{ dict_item['vrf'] }}.name
-  #vrf_template_name          = mso_schema.{{ dict_item['schema'] }}.template_name
+{% if dict_item['diffent_schema_vrf_bd'] is sameas true  %}
+  vrf_template_name      = mso_schema.{{ dict_item['schema'] }}.template_name
+{% endif %}
   useg_epg                   = {{ dict_item['useg_epg'] }}
   intra_epg                  = "{{ dict_item['intra_epg'] }}"
   intersite_multicast_source = {{ dict_item['intersite_multicast_source'] }}

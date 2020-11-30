@@ -7,10 +7,12 @@ resource "mso_schema_template_bd" "{{ dict_item['schema_template_bd'] }}" {
 {% else %}
   template_name          = mso_schema.{{ dict_item['template'] }}.template_name
 {% endif %}
+{% if dict_item['diffent_schema_vrf_bd'] is sameas true  %}
+  vrf_template_name      = mso_schema.{{ dict_item['schema'] }}.template_name
+{% endif %}
   name                   = "{{ dict_item['name'] }}"
   display_name           = "{{ dict_item['name'] }}"
   vrf_name               = mso_schema_template_vrf.{{ dict_item['vrf'] }}.name
-  #vrf_template_name      = mso_schema.{{ dict_item['schema'] }}.template_name
   layer2_unknown_unicast = "{{ dict_item['layer2_unknown_unicast'] }}"
   layer2_stretch         = {{ dict_item['layer2_stretch'] }}
   intersite_bum_traffic  = {{ dict_item['intersite_bum_traffic'] }}

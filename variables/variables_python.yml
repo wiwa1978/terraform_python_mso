@@ -1,8 +1,8 @@
 ---
 providers:
   username: admin
-  password: Cisco123456!
-  url: https://10.48.109.10
+  password: ---
+  url: https://w.x.y.z
 sites: 
   - site1: SaS_APIC
   - site2: Site2
@@ -52,13 +52,7 @@ schema_template_vrfs:
     layer3_multicast: true
     vzany: true
     type: mso_schema_template
-  - schema_template_vrf: vrf2
-    schema: schema1
-    name: vrf2
-    template: schema_template1
-    layer3_multicast: true
-    vzany: false
-    type: mso_schema_template
+
 schema_template_bds:
   - schema_template_bd: bd1
     schema: schema1
@@ -70,6 +64,8 @@ schema_template_bds:
     intersite_bum_traffic: true
     optimize_wan_bandwidth: true
     type: mso_schema_template
+    diffent_schema_vrf_bd: false
+    
 schema_template_bd_subnets:
   - schema_template_bd_subnet: schema_template_bd_subnet1
     schema: schema1
@@ -94,6 +90,7 @@ schema_template_anp_epgs:
     intra_epg: "unenforced"
     intersite_multicast_source: false
     preferred_group: false
+    diffent_schema_vrf_bd: false
 schema_template_filters:
   - schema_template_filter: "allow_http"
     name: "allow_http"
