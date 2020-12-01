@@ -1,0 +1,12 @@
+{% for dict_item in variables %}
+
+resource "mso_schema_template_l3out" "{{ dict_item['schema_template_l3out'] }}" {
+  schema_id              = mso_schema.{{ dict_item['schema'] }}.id 
+  template_name          = mso_schema_template.{{ dict_item['template'] }}.name
+  l3out_name             = "{{ dict_item['l3out_name'] }}"
+  display_name           = "{{ dict_item['l3out_name'] }}"
+  vrf_name               = mso_schema_template_vrf.{{ dict_item['vrf'] }}.name
+}
+{% endfor %}
+
+

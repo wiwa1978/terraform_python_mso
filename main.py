@@ -94,20 +94,19 @@ def renderFiles(yml_dict, split):
             postProcessFile(filename)
 
 def createOutputs(key, yml_dict):
-    #print(yml_dict)
- 
     template = jinja_templates.get_template(f"output/output.j2")
     
-    if (key[:-1] != 'schema_site'):
-        if (key[:-1] != 'schema_template_bd_subnet'):
-            for item in yml_dict:
-        
-                payload = template.render(
-                    key = key[:-1],
-                    name = item[key[:-1]]
-                )
+    output_list = ['schema_site', 'schema_template_bd_subnet', 'schema_template_deploy']
 
-                writeFile(f"{payload}\n", "output")
+    if not key[:-1] in output_list:
+        for item in yml_dict:
+            payload = template.render(
+                key = key[:-1],
+                name = item[key[:-1]]
+            )
+
+            writeFile(f"{payload}\n", "output")
+                    
 
 def postProcessFile(filename):
     logToFile(f"  => Postprocessing {filename}.tf")

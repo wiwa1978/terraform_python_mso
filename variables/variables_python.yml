@@ -1,21 +1,21 @@
 ---
 providers:
   username: admin
-  password: ---
-  url: https://w.x.y.z
+  password: Cisco123456!
+  url: https://10.48.109.10
 sites: 
   - site1: SaS_APIC
   - site2: Site2
 tenants: 
   - tenant: tenant1
     name: Tenant_Demo1
-    description: Tenant_Demo1 description
+    description: Tenant_DemoWim description
     sites: 
       - site1
       - site2
   - tenant: tenant2
     name: Tenant_Demo2
-    description: Tenant_Demo2 description
+    description: Tenant_DemoWim description
     sites: 
       - site1
 schemas: 
@@ -144,3 +144,26 @@ schema_template_anp_epg_contracts:
     type: mso_schema_template
 
 
+schema_template_deploys:
+  - schema_template_deploy: deploy1
+    schema: schema1
+    template: schema_template1
+    site: site1
+    undeploy: true
+
+
+schema_template_l3outs:
+  - schema_template_l3out: l3out_1
+    schema: schema1
+    template: schema_template1
+    l3out_name: l3out_name_1
+    vrf: vrf1
+
+schema_template_vrf_contracts:
+  - schema_template_vrf_contract: vrf_contract1
+    schema: schema1
+    template: schema_template1
+    vrf: vrf1
+    relationship_type: provider
+    contract_name: contract1
+    type: mso_schema_template
