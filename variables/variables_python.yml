@@ -1,8 +1,8 @@
 ---
 providers:
   username: admin
-  password: Cisco123456!
-  url: https://10.48.109.10
+  password: ---
+  url: https://w.x.y.z
 sites: 
   - site1: SaS_APIC
   - site2: Site2
