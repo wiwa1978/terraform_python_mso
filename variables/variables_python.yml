@@ -9,13 +9,13 @@ sites:
 tenants: 
   - tenant: tenant1
     name: Tenant_Demo1
-    description: Tenant_DemoWim description
+    description: Tenant_Demo1 description
     sites: 
       - site1
       - site2
   - tenant: tenant2
     name: Tenant_Demo2
-    description: Tenant_DemoWim description
+    description: Tenant_Demo2 description
     sites: 
       - site1
 schemas: 
