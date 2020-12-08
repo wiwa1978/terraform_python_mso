@@ -9,11 +9,8 @@ output {{key}}_{{name}} {
   value = mso_{{key}}.{{name}}.bd_name
 {% elif 'schema_template_filter' in key %}
   value = mso_{{key}}_entry.{{name}}.name
-{% elif 'schema_template_l3out' in key %}
-  value = mso_{{key}}.{{name}}.l3out_name
-{% elif 'schema_template_vrf_contract' in key %}
-  value = mso_{{key}}.{{name}}.contract_name
 {% else %}
     value = mso_{{key}}.{{name}}.name
 {% endif %}
 }
+

@@ -18,6 +18,11 @@ tenants:
     description: Tenant_DemoWim description
     sites: 
       - site1
+  - tenant: tenant3
+    name: Tenant_Demo3
+    description: Tenant_DemoWim description
+    sites: 
+      - site1
 schemas: 
   - schema: schema1
     name: schema1
@@ -27,6 +32,10 @@ schemas:
     name: schema2
     template_name: template2
     tenant: tenant2
+  - schema: schema3
+    name: schema3
+    template_name: template3
+    tenant: tenant3
 schema_sites:
   - schema_site: schema_site1
     schema: schema1
@@ -159,11 +168,11 @@ schema_template_l3outs:
     l3out_name: l3out_name_1
     vrf: vrf1
 
-schema_template_vrf_contracts:
-  - schema_template_vrf_contract: vrf_contract1
-    schema: schema1
-    template: schema_template1
-    vrf: vrf1
-    relationship_type: provider
-    contract_name: contract1
-    type: mso_schema_template
+# schema_template_vrf_contracts:
+#   - schema_template_vrf_contract: vrf_contract1
+#     schema: schema1
+#     template: schema_template1
+#     vrf: vrf1
+#     relationship_type: provider
+#     contract_name: contract1
+#     type: mso_schema_template
